@@ -6,5 +6,5 @@ public class ItemSO : ScriptableObject
 {
     public Color color;
     public int price;
-        
+    public bool isShirt;
 }

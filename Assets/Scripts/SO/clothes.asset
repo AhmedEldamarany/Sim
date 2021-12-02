@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc8bbd10f0d9e7e4c8ee0ed6294068b6, type: 3}
-  m_Name: item1
+  m_Script: {fileID: 11500000, guid: fd36322f3dc5f7842a1c4bb97244429e, type: 3}
+  m_Name: clothes
   m_EditorClassIdentifier: 
-  color: {r: 0.8584906, g: 0.068841234, b: 0.068841234, a: 1}
-  price: 2
-  isShirt: 0
+  Shirt: {r: 0.8584906, g: 0.068841234, b: 0.068841234, a: 1}
+  Pantalon: {r: 0.8584906, g: 0.068841234, b: 0.068841234, a: 1}
+  MoneyAmount: 1

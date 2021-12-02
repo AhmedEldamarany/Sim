@@ -14,8 +14,15 @@ public class TradingMaanger : MonoBehaviour
     public  static bool Trade(ItemHandler item, PlayerMoney player)
     {
         if (item.price > player.money)
-            return false;
+        {
+            item.GoToShelf();
+            player.LeaveItem();
+            return false; 
+        }
         else
+        {
+           
             return true;
+        }
     }
 }

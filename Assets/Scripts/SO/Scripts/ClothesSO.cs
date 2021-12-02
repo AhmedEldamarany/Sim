@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "itemSO", fileName = "item")]
+[CreateAssetMenu(menuName = "ClothesSO", fileName = "clothes")]
 
 public class ClothesSO : ScriptableObject
 {
     public Color Shirt;
     public Color Pantalon;
+    public int MoneyAmount;
 }

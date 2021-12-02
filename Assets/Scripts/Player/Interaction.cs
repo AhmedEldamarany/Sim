@@ -1,23 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
     bool stay;
-  
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag.Equals("shop"))
-        {
+    bool hasItem;
 
+
+    void InteractWithShop()
+    {
         stay = true;
         StartCoroutine(nameof(CheckForInput)); //better than checking in the update
-        }
-        else if (collision.tag.Equals("item"))
+    }
+    void InteractWthItem(ItemHandler item)
+    {
+        hasItem = true;
+        GetComponent<PlayerMoney>().itemInHand = item;
+        item.transform.parent = transform;
+    }
+    void InteractWithCashier()
+    {
+        hasItem = false;
+        GetComponent<PlayerMoney>().Buy();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        string tag = collision.tag;
+        if (tag.Equals("shop"))
         {
-            ItemHandler item = collision.gameObject.GetComponent<ItemHandler>();
-            GetComponent<PlayerMoney>().Buy(item);
+            InteractWithShop();
+        }
+        else if (tag.Equals("item") && !hasItem)
+        {
+            InteractWthItem(collision.gameObject.GetComponent<ItemHandler>());
+        }
+        else if (tag.Equals("cashier"))
+        {
+            InteractWithCashier();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -30,8 +49,8 @@ public class Interaction : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 Debug.Log("Buy from here");
-            
-        yield return null;
+
+            yield return null;
         }
         yield return new WaitForEndOfFrame();
     }
