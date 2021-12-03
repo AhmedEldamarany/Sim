@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shirt: {r: 0.8584906, g: 0.068841234, b: 0.068841234, a: 1}
   Pantalon: {r: 0.8584906, g: 0.068841234, b: 0.068841234, a: 1}
-  MoneyAmount: 1
+  MoneyAmount: 18
