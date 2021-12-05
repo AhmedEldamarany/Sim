@@ -1,16 +1,17 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Interaction : MonoBehaviour
 {
     bool stay;
     bool hasItem;
 
-
+    [SerializeField] GameObject TextMessage;
     void InteractWithShop()
     {
         stay = true;
         StartCoroutine(nameof(CheckForInput)); //better than checking in the update
+        TextMessage.SetActive(true);
     }
     void InteractWthItem(ItemHandler item)
     {
@@ -41,18 +42,25 @@ public class Interaction : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        stay = false;
+        if (stay)
+        {
+            stay = false;
+            TextMessage.SetActive(false);
+        }
     }
     IEnumerator CheckForInput()
     {
         while (stay)
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                Debug.Log("Buy from here");
-
+                SceneManager.LoadScene(1);
+            
             yield return null;
         }
         yield return new WaitForEndOfFrame();
     }
-
+    public void ExitShop()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

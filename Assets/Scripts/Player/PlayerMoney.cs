@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMoney : MonoBehaviour
@@ -11,7 +12,7 @@ public class PlayerMoney : MonoBehaviour
     [SerializeField] ClothesSO clothes;
     [SerializeField] SpriteRenderer shirt;
     [SerializeField] SpriteRenderer pants;
-
+    [SerializeField] TMP_Text moneyText;
    [HideInInspector] public TradingMaanger tradingMaanger;
    [HideInInspector] public ItemHandler itemInHand; 
    
@@ -20,9 +21,14 @@ public class PlayerMoney : MonoBehaviour
     {
         money = clothes.MoneyAmount;
         shirt.color = clothes.Shirt;
+        pants.color = clothes.Pantalon;
+        updateMoneyText();
+    }
+    void updateMoneyText()
+    {
+        moneyText.text = $"${money}";
 
     }
-
     internal void LeaveItem()
     {
         itemInHand = null;
@@ -57,6 +63,7 @@ public class PlayerMoney : MonoBehaviour
     {
         money -= cost;
         clothes.MoneyAmount = money;
-        
+        updateMoneyText();
+
     }
 }
